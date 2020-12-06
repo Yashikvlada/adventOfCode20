@@ -6,7 +6,7 @@
     <title>1</title>
 </head>
 <body>
-
+    <h2>1.1</h2>
     <h4>Find the two entries that sum to 2020; what do you get if you multiply them together?</h4>
 
     <script>
@@ -226,7 +226,23 @@
         }
     }
 
-    document.write(`<h1>Answer: ${FindResult(2020, inputArr)}</h1>`);
+    document.write(`<h1>Answer for 1.1: ${FindResult(2020, inputArr)}</h1>`);
+
+    document.write("<h2>1.2</h2>");
+
+    function FindResult2(aimSumm, arr){
+        for(let i1 of inputArr){
+            for(let i2 of inputArr){
+                for(let i3 of inputArr){
+                    if(i1 + i2 + i3 == aimSumm)
+                        return i1*i2*i3;
+                }
+
+            }
+        }
+    }
+
+    document.write(`<h1>Answer for 1.2: ${FindResult2(2020, inputArr)}</h1>`);
 
     </script>   
 </body>
