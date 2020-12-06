@@ -1016,17 +1016,29 @@
     
     class PwdInfo{
         constructor(min, max, ch, pass){
-            this.min = min;
-            this.max = max;
+            this.min = parseInt(min);
+            this.max = parseInt(max);
             this.ch = ch;
             this.pass = pass;
         }
-        IsValid(){
+        IsValid1(){
             var count = this.pass.split(this.ch).length - 1;
 
             if(count >= this.min && count <= this.max)
                 return true;
             
+            return false;
+        }
+        IsValid2(){
+            if(this.pass[this.min-1]==this.ch && this.pass[this.max-1]==this.ch)
+                return false;
+
+            if(this.pass[this.min-1]!=this.ch && this.pass[this.max-1]!=this.ch)
+                return false;
+            
+            if(this.pass[this.min-1]==this.ch || this.pass[this.max-1]==this.ch)
+                return true;
+
             return false;
         }
 
@@ -1046,11 +1058,11 @@
                     });
         }
         
-        static CountValidPwdInElems(){
+        static CountValidPwdInElems(ver){
             var summ = 0;
 
             for(var p of this.allPwdInfoElem){
-                if(p.IsValid())
+                if(ver==1?p.IsValid1():p.IsValid2())
                     ++summ;
             }
 
@@ -1059,13 +1071,13 @@
     }
     
     PwdInfo.ParseInputToPwdInfo(inputStr);
-    var validPwds = PwdInfo.CountValidPwdInElems();
-    document.write(`<h1>Answer for 2.1: ${validPwds}</h1>`);
+    var validPwds1 = PwdInfo.CountValidPwdInElems(1);
+    document.write(`<h1>Answer for 2.1: ${validPwds1}</h1>`);
 
-    // document.write("<h2>1.2</h2>");
+    document.write("<h2>2.2</h2>");
 
-
-    // document.write(`<h1>Answer for 1.2: ${ }</h1>`);
+    var validPwds2 = PwdInfo.CountValidPwdInElems(2);
+    document.write(`<h1>Answer for 2.1: ${validPwds2}</h1>`);
 
     </script>   
 </body>
