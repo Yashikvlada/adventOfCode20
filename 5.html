@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>5.1</h2>
-    <h4>In your batch file, how many passports are valid?</h4>
+    <h4>What is the highest seat ID on a boarding pass?</h4>
 
     <script>
     "use strict"
@@ -926,9 +926,22 @@ FFBFFFFLLR`;
             max=id;
     }
 
+    let min = max;
+    for(let id of idArray){
+        if(id<min)
+            min=id;
+    }
+
     document.write(`<h1>Answer for 5.1: ${max}</h1>`);
-    // document.write("<h2>4.2</h2>");
-    // document.write(`<h1>Answer for 4.2: ${base.PassportCount()}</h1>`);
+
+    document.write("<h2>5.2</h2>");
+
+    //ищем пропуск, это наш билет
+    for(let id=min;id<max;++id){
+        if(idArray.find(i=>i==id)==undefined)
+            document.write(`<h1>Answer for 5.2: ${id}</h1>`);
+
+    }
 
     </script>   
 </body>
